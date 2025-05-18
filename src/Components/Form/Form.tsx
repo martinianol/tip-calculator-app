@@ -1,12 +1,13 @@
-const Form = () => {
+import Input from "./Inputs/Input";
+interface FormProps {
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  totalValue: number;
+}
+
+const Form = ({ onChange, totalValue }: FormProps) => {
   return (
     <form className="flex flex-col">
-      <div className="flex flex-col gap-2">
-        <label htmlFor="bill" className="text-preset1">
-          Bill
-        </label>
-        <input type="number" id="bill" placeholder="0" className="" />
-      </div>
+      <Input label="bill" value={totalValue} onChange={onChange} />
       <div>
         Select Tip %<button>5%</button>
         <button>10%</button>
@@ -15,7 +16,7 @@ const Form = () => {
         <button>50%</button>
         <button>Custom</button>
       </div>
-      <div>Number of People</div>
+      <Input label="number of people" value={totalValue} onChange={onChange} />
     </form>
   );
 };
