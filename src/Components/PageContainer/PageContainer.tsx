@@ -6,7 +6,7 @@ interface PageContainerProps {
 
 const PageContainer = ({ children }: PageContainerProps) => {
   return (
-    <div className="flex bg-grey-200 flex-col min-h-screen font-mono">
+    <div className="flex bg-grey-200 flex-col min-h-screen font-mono font-bold">
       {children}
     </div>
   );

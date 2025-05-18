@@ -7,12 +7,46 @@ export default {
         mono: ["Space Mono", "monospace"],
       },
       fontSize: {
-        // Preset name can be anything descriptive
         preset1: [
           "48px",
           {
             lineHeight: "71px",
             letterSpacing: "-1px",
+          },
+        ],
+        preset2: [
+          "32px",
+          {
+            lineHeight: "47px",
+            letterSpacing: "-0.67px",
+          },
+        ],
+        preset3: [
+          "24px",
+          {
+            lineHeight: "36px",
+            letterSpacing: "0px",
+          },
+        ],
+        preset4: [
+          "20px",
+          {
+            lineHeight: "30px",
+            letterSpacing: "0px",
+          },
+        ],
+        preset5: [
+          "16px",
+          {
+            lineHeight: "24px",
+            letterSpacing: "0px",
+          },
+        ],
+        preset6: [
+          "13px",
+          {
+            lineHeight: "19px",
+            letterSpacing: "0px",
           },
         ],
       },
