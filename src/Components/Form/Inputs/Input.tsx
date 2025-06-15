@@ -38,7 +38,7 @@ const Input = ({
           type="number"
           id={id}
           placeholder="0"
-          className="bg-transparent text-preset3 text-right outline-none min-w-0 caret-green-400"
+          className="bg-transparent text-preset3 text-right outline-none min-w-0 caret-green-400 text-green-900"
           value={value}
           onChange={(e) => onChange(id, e.target.value)}
           min={0}
