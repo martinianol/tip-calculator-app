@@ -3,7 +3,7 @@ import TipButton from "./TipButton/TipButton";
 const PERCENTAGES_OPTIONS = [5, 10, 15, 25, 50, "Custom"];
 
 interface TipButtonsInputProps {
-  tipPercentage: string | number | null;
+  tipPercentage: number;
   onSelectTip: (val: string | number) => void;
 }
 
@@ -20,8 +20,8 @@ const TipButtonsInput = ({
             key={val}
             val={val}
             onClick={onSelectTip}
-            isActive={val === tipPercentage}
-            isCustom={typeof val === "string"}
+            isActive={val == tipPercentage}
+            isCustom={val === "Custom"}
           />
         ))}
       </div>

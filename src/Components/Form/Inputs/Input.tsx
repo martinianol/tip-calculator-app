@@ -1,7 +1,7 @@
 interface InputProps {
   label: string;
   id: string;
-  value: number;
+  value: number | null;
   onChange: (key: string, e: string) => void;
   icon?: React.ReactNode;
   isError?: boolean;
@@ -17,6 +17,7 @@ const Input = ({
   isError,
   errorMessage,
 }: InputProps) => {
+  console.log("Input Vlaue", value)
   return (
     <div className="flex flex-col gap-2">
       <label
@@ -38,8 +39,8 @@ const Input = ({
           type="number"
           id={id}
           placeholder="0"
-          className="bg-transparent text-preset3 text-right outline-none min-w-0 caret-green-400 text-green-900"
-          value={value}
+          className="bg-transparent text-preset3 text-right outline-none min-w-0 caret-green-400 text-green-900 placeholder-grey-300"
+          value={value ?? ""}
           onChange={(e) => onChange(id, e.target.value)}
           min={0}
         />

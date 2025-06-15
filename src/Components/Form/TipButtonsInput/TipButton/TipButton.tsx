@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 
 interface TipButtonProps {
   val: number | string;
-  onClick: (val: number | string) => void;
+  onClick: (val: string | number) => void;
   isActive?: boolean;
   isCustom?: boolean;
 }
