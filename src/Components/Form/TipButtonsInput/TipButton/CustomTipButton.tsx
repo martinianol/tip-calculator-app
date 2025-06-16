@@ -21,7 +21,7 @@ const CustomTipButton = ({ val, onChange, isActive }: CustomTipButton) => {
       id="custom-tip-input"
       className={inputStyles}
       type="number"
-      value={val === 0 ? "" : val}
+      value={val === 0 ? undefined : val}
       onChange={(e) => onChange(Number(e.target.value))}
       placeholder="Custom"
       min={0}

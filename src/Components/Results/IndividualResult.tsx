@@ -17,7 +17,9 @@ const IndividualResult = ({
         <p className="text-primary-white text-preset5">{label}</p>
         <p className="text-grey-400 text-preset6">/ person</p>
       </div>
-      <p className="text-green-400 text-preset2">${displayValue}</p>
+      <p className="text-green-400 text-preset2 md:text-preset1">
+        ${displayValue}
+      </p>
     </div>
   );
 };
