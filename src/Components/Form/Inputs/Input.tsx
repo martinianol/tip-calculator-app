@@ -17,7 +17,6 @@ const Input = ({
   isError,
   errorMessage,
 }: InputProps) => {
-  console.log("Input Vlaue", value)
   return (
     <div className="flex flex-col gap-2">
       <label
@@ -30,8 +29,8 @@ const Input = ({
         )}
       </label>
       <div
-        className={`flex items-center gap-2 rounded-[5px] px-4 py-2 bg-grey-50 border-2 ${
-          isError ? "border-orange-400" : "border-transparent"
+        className={`flex items-center gap-2 rounded-[5px] px-4 py-2 bg-grey-50 border-2 cursor-pointer ${
+          isError ? "!border-orange-400" : "border-transparent"
         } focus-within:border-green-400`}
       >
         <span className="text-grey-500">{icon}</span>
@@ -39,7 +38,7 @@ const Input = ({
           type="number"
           id={id}
           placeholder="0"
-          className="bg-transparent text-preset3 text-right outline-none min-w-0 caret-green-400 text-green-900 placeholder-grey-300"
+          className="cursor-pointer bg-transparent text-preset3 text-right outline-none min-w-0 w-full caret-green-400 text-green-900 placeholder-grey-300"
           value={value ?? ""}
           onChange={(e) => onChange(id, e.target.value)}
           min={0}
