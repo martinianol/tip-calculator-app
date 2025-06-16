@@ -31,7 +31,7 @@ const Form = ({
     e.preventDefault();
 
   return (
-    <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
+    <form className="flex flex-col gap-8 px-2" onSubmit={handleSubmit}>
       <Input
         label="Bill"
         id="billValue"

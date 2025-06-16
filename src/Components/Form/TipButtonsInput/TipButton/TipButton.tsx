@@ -7,7 +7,7 @@ interface TipButtonProps {
   isActive?: boolean;
 }
 export const baseStyles =
-  "text-center py-2 px-4 border-none rounded-[5px] text-white bg-green-900 hover:bg-green-200 hover:text-green-900 cursor-pointer";
+  "text-center py-[6px] px-4 border-none rounded-[5px] text-white bg-green-900 hover:bg-green-200 hover:text-green-900 cursor-pointer";
 
 export const activeStyles = "bg-green-400 text-green-900";
 

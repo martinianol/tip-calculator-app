@@ -24,12 +24,10 @@ const Main = () => {
       : tipValuePerPerson + billValue / numberOfPeople;
 
   const handleReset = () => {
-    console.log("handleReset");
     setFormValues(INITIAL_STATE);
   };
 
   const handleInputChange = (key: string, value: string | number) => {
-    console.log("handleInputChange", key, value);
     setFormValues((prevState) => {
       return {
         ...prevState,
