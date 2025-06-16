@@ -7,8 +7,10 @@ import Footer from "./Components/Footer/Footer";
 function App() {
   return (
     <PageContainer>
-      <Header />
-      <Main />
+      <div className="flex flex-col items-center justify-center flex-1 gap-10 lg:gap-20">
+        <Header />
+        <Main />
+      </div>
       <Footer />
     </PageContainer>
   );

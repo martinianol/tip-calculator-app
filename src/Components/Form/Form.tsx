@@ -31,7 +31,10 @@ const Form = ({
     e.preventDefault();
 
   return (
-    <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
+    <form
+      className="flex flex-col gap-8 px-2 md:px-0 md:gap-6 lg:flex-1 lg:justify-center lg:gap-10"
+      onSubmit={handleSubmit}
+    >
       <Input
         label="Bill"
         id="billValue"

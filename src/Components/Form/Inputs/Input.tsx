@@ -29,8 +29,8 @@ const Input = ({
         )}
       </label>
       <div
-        className={`flex items-center gap-2 rounded-[5px] px-4 py-2 bg-grey-50 border-2 cursor-pointer ${
-          isError ? "!border-orange-400" : "border-transparent"
+        className={`flex items-center gap-2 rounded-[5px] px-4 py-[6px] bg-grey-50 cursor-pointer border-2 ${
+          isError ? " !border-orange-400" : "border-transparent"
         } focus-within:border-green-400`}
       >
         <span className="text-grey-500">{icon}</span>
