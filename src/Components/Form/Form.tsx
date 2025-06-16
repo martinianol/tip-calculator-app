@@ -1,12 +1,13 @@
 import Input from "./Inputs/Input";
 import iconPerson from "../../../images/icon-person.svg";
 import iconDollar from "../../../images/icon-dollar.svg";
-import { useState, type FormEventHandler } from "react";
+import { type FormEventHandler } from "react";
 import TipButtonsInput from "./TipButtonsInput/TipButtonsInput";
 interface FormProps {
-  onChange: (keyValue: string, value: string) => void;
-  totalValue: number;
-  numberOfPeople: number;
+  onChange: (keyValue: string, value: string | number) => void;
+  totalValue: number | null;
+  numberOfPeople: number | null;
+  tipPercentage: number;
 }
 
 const PersonIcon = (
@@ -16,11 +17,15 @@ const DollarIcon = (
   <img src={iconDollar} alt="" className="w-3 h-4 max-w-none" />
 );
 
-const Form = ({ onChange, totalValue, numberOfPeople }: FormProps) => {
-  const [tipPercentage, setTipPercentage] = useState<number | string | null>(
-    null
-  );
-  const handleSelectTip = (val: number | string) => setTipPercentage(val);
+const Form = ({
+  onChange,
+  totalValue,
+  numberOfPeople,
+  tipPercentage,
+}: FormProps) => {
+  const handleSelectTip = (val: string | number) => {
+    onChange("tipPercentage", val);
+  };
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) =>
     e.preventDefault();
