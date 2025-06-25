@@ -7,7 +7,8 @@ interface FormProps {
   onChange: (keyValue: string, value: string | number) => void;
   totalValue: number | null;
   numberOfPeople: number | null;
-  tipPercentage: number;
+  discretTipPercentage: number;
+  customTipPercentage: number | null;
 }
 
 const PersonIcon = (
@@ -21,12 +22,9 @@ const Form = ({
   onChange,
   totalValue,
   numberOfPeople,
-  tipPercentage,
+  discretTipPercentage,
+  customTipPercentage,
 }: FormProps) => {
-  const handleSelectTip = (val: string | number) => {
-    onChange("tipPercentage", val);
-  };
-
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) =>
     e.preventDefault();
 
@@ -43,8 +41,9 @@ const Form = ({
         icon={DollarIcon}
       />
       <TipButtonsInput
-        tipPercentage={tipPercentage}
-        onSelectTip={handleSelectTip}
+        discretTipPercentage={discretTipPercentage}
+        customTipPercentage={customTipPercentage}
+        onSelectTip={onChange}
       />
       <Input
         label="Number of People"

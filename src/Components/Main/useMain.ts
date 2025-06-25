@@ -1,5 +1,12 @@
 import { useState } from "react";
 
+type FormValues = {
+  billValue: number | null;
+  numberOfPeople: number | null;
+  discretTipPercentage: number;
+  customTipPercentage: number | null;
+};
+
 const INITIAL_STATE = {
   billValue: null,
   numberOfPeople: null,
@@ -8,7 +15,7 @@ const INITIAL_STATE = {
 };
 
 const useMain = () => {
-  const [formValues, setFormValues] = useState(INITIAL_STATE);
+  const [formValues, setFormValues] = useState<FormValues>(INITIAL_STATE);
 
   const {
     billValue,
@@ -35,6 +42,20 @@ const useMain = () => {
 
   const handleInputChange = (key: string, value: string | number) => {
     setFormValues((prevState) => {
+      if (key === "discretTipPercentage") {
+        return {
+          ...prevState,
+          discretTipPercentage: Number(value),
+          customTipPercentage: null,
+        };
+      }
+      if (key === "customTipPercentage") {
+        return {
+          ...prevState,
+          customTipPercentage: Number(value),
+          discretTipPercentage: 0,
+        };
+      }
       return {
         ...prevState,
         [key]: Number(value),

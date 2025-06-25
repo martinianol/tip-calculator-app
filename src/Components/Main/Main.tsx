@@ -1,53 +1,28 @@
-import { useState } from "react";
 import Form from "../Form/Form";
 import Results from "../Results/Results";
-
-const INITIAL_STATE = {
-  billValue: null,
-  numberOfPeople: null,
-  tipPercentage: 0,
-};
+import useMain from "./useMain";
 
 const Main = () => {
-  const [formValues, setFormValues] = useState(INITIAL_STATE);
+  const {
+    billValue,
+    canReset,
+    discretTipPercentage,
+    customTipPercentage,
+    handleInputChange,
+    handleReset,
+    numberOfPeople,
+    tipValuePerPerson,
+    totalPerPerson,
+  } = useMain();
 
-  const { billValue, numberOfPeople, tipPercentage } = formValues;
-
-  const tipValuePerPerson =
-    numberOfPeople === null || billValue === null || numberOfPeople === 0
-      ? 0
-      : (billValue * tipPercentage) / (100 * numberOfPeople);
-
-  const totalPerPerson =
-    numberOfPeople === null || billValue === null || numberOfPeople === 0
-      ? 0
-      : tipValuePerPerson + billValue / numberOfPeople;
-
-  const handleReset = () => {
-    setFormValues(INITIAL_STATE);
-  };
-
-  const handleInputChange = (key: string, value: string | number) => {
-    setFormValues((prevState) => {
-      return {
-        ...prevState,
-        [key]: Number(value),
-      };
-    });
-  };
-
-  const canReset = Object.keys(INITIAL_STATE).some(
-    (key) =>
-      formValues[key as keyof typeof INITIAL_STATE] !==
-      INITIAL_STATE[key as keyof typeof INITIAL_STATE]
-  );
   return (
     <main className="bg-white px-6 py-8 flex flex-col gap-8 rounded-t-[25px] md:px-20 md:py-12 md:gap-10 md:rounded-[25px] md:min-w-[608px] md:mx-auto lg:flex-row lg:gap-12 lg:min-w-[920px] lg:p-8">
       <Form
         onChange={handleInputChange}
         totalValue={billValue}
         numberOfPeople={numberOfPeople}
-        tipPercentage={tipPercentage}
+        discretTipPercentage={discretTipPercentage}
+        customTipPercentage={customTipPercentage}
       />
       <Results
         onClick={handleReset}
