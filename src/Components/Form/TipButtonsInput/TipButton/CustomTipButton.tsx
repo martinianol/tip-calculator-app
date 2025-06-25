@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { activeStyles } from "./TipButton";
 import { twMerge } from "tailwind-merge";
+import { useRef } from "react";
 
 interface CustomTipButton {
   val: number;
@@ -9,6 +10,7 @@ interface CustomTipButton {
 }
 
 const CustomTipButton = ({ val, onChange, isActive }: CustomTipButton) => {
+  const inputRef = useRef<HTMLInputElement>(null);
   const baseStyles =
     "cursor-pointer bg-grey-50 text-center outline-none min-w-0 w-full h-full text-green-900 placeholder-grey-550 border-2 border-transparent rounded-[5px]";
   const focusStyles = "focus:bg-grey-50 focus:border-green-400";
@@ -17,54 +19,60 @@ const CustomTipButton = ({ val, onChange, isActive }: CustomTipButton) => {
   )}`;
 
   const displayValue =
-    isActive && (val === 0 || Boolean(val)) ? String(val) : "";
-
-  const rightLocationForPercentage =
-    val === 100 ? "19px" : val >= 10 ? "27px" : "35px";
+    isActive && (val === 0 || Boolean(val)) ? String(val) + "%" : "";
 
   const handleClampValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     const rawValue = e.target.value;
-    const cleanedValue = rawValue.replace(/^0+(?=\d)/, "");
+    const cleanedValue = rawValue.replace(/^0+(?=\d)|%/g, "");
     const numberValue = Math.min(Number(cleanedValue), 100);
     onChange(numberValue);
+    setCursorBeforePercent();
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "-" || e.key === "e" || e.key === "+") {
       e.preventDefault(); // Block minus and scientific notation
     }
+    if (e.key === "ArrowUp") {
+      onChange(Math.min(val + 1, 100));
+    }
+    if (e.key === "ArrowDown") {
+      onChange(Math.max(val - 1, 0));
+    }
   };
 
-  const rightClasses =
-  val === 100
-    ? "right-[24px] md:right-[34px] lg:right-[19px]"
-    : val >= 10
-    ? "right-[45px] md:right-[40px] lg:right-[27px]"
-    : "right-[52px] md:right-[46px] lg:right-[35px]";
+  const setCursorBeforePercent = () => {
+    // Wait for React to update the input value
+    setTimeout(() => {
+      const input = inputRef.current;
+      if (!input) return;
+
+      const val = input.value;
+      const percentIndex = val.indexOf("%");
+
+      if (percentIndex > 0) {
+        input.setSelectionRange(percentIndex, percentIndex);
+      } else {
+        // fallback to end of input if % not found
+        const pos = val.length;
+        input.setSelectionRange(pos, pos);
+      }
+    }, 0);
+  };
 
   return (
-    <div className="relative">
-      <input
-        id="custom-tip-input"
-        className={inputStyles}
-        type="number"
-        value={displayValue}
-        onChange={handleClampValue}
-        placeholder="Custom"
-        onKeyDown={handleKeyDown}
-        min={0}
-        max={100}
-        step={1}
-      />
-      {isActive && (
-        <span
-          className={`absolute inset-y-0 flex items-center pointer-events-none text-green-900 text-preset3 ${rightClasses}`}
-          style={{ right: rightLocationForPercentage }}
-        >
-          %
-        </span>
-      )}
-    </div>
+    <input
+      ref={inputRef}
+      id="custom-tip-input"
+      className={inputStyles}
+      type="text"
+      value={displayValue}
+      onChange={handleClampValue}
+      placeholder="Custom"
+      onKeyDown={handleKeyDown}
+      onFocus={setCursorBeforePercent}
+      inputMode="numeric"
+    />
   );
 };
 
