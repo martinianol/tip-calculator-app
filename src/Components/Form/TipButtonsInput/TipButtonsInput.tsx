@@ -5,13 +5,20 @@ const PERCENTAGES_OPTIONS = [5, 10, 15, 25, 50];
 
 interface TipButtonsInputProps {
   tipPercentage: number;
-  onSelectTip: (val: string | number) => void;
+  isCustom: boolean;
+  onSelectTip: (tipType: string, val: string | number | boolean) => void;
 }
 
 const TipButtonsInput = ({
   onSelectTip,
   tipPercentage,
+  isCustom,
 }: TipButtonsInputProps) => {
+  const handleSelectTip = (value: number, isCustom = false) => {
+    onSelectTip("tipPercentage", value);
+    onSelectTip("isCustom", isCustom);
+  };
+
   return (
     <div className="flex flex-col gap-2">
       <p className="text-preset5 text-grey-500">Select Tip %</p>
@@ -20,16 +27,14 @@ const TipButtonsInput = ({
           <TipButton
             key={val}
             val={val}
-            onClick={onSelectTip}
-            isActive={val == tipPercentage}
+            onClick={(value) => handleSelectTip(value)}
+            isActive={val == tipPercentage && !isCustom}
           />
         ))}
         <CustomTipButton
           val={tipPercentage}
-          onChange={onSelectTip}
-          isActive={
-            !PERCENTAGES_OPTIONS.includes(tipPercentage) && tipPercentage !== 0
-          }
+          onChange={(value) => handleSelectTip(value, true)}
+          isActive={isCustom}
         />
       </div>
     </div>
