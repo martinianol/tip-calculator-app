@@ -5,7 +5,7 @@ import { twMerge } from "tailwind-merge";
 interface CustomTipButton {
   val: number | null;
   onChange: (val: number) => void;
-  isActive?: boolean;
+  isActive: boolean;
 }
 
 const CustomTipButton = ({ val, onChange, isActive }: CustomTipButton) => {
@@ -17,7 +17,14 @@ const CustomTipButton = ({ val, onChange, isActive }: CustomTipButton) => {
   )}`;
 
   const displayValue = val === null ? "" : val;
-  const rightForPercentage = val && val >= 10 ? "27px" : "35px";
+  const rightLocationForPercentage =
+    typeof val === "number"
+      ? val === 100
+        ? "19px"
+        : val >= 10
+        ? "27px"
+        : "35px"
+      : "unset";
 
   return (
     <div className="relative">
@@ -34,7 +41,8 @@ const CustomTipButton = ({ val, onChange, isActive }: CustomTipButton) => {
       />
       {isActive && (
         <span
-          className={`absolute inset-y-0 right-[${rightForPercentage}] flex items-center pointer-events-none text-green-900 text-preset3`}
+          className={`absolute inset-y-0 flex items-center pointer-events-none text-green-900 text-preset3`}
+          style={{ right: rightLocationForPercentage }}
         >
           %
         </span>

@@ -6,8 +6,8 @@ const Main = () => {
   const {
     billValue,
     canReset,
-    discretTipPercentage,
-    customTipPercentage,
+    tipPercentage,
+    isCustom,
     handleInputChange,
     handleReset,
     numberOfPeople,
@@ -21,8 +21,8 @@ const Main = () => {
         onChange={handleInputChange}
         totalValue={billValue}
         numberOfPeople={numberOfPeople}
-        discretTipPercentage={discretTipPercentage}
-        customTipPercentage={customTipPercentage}
+        tipPercentage={tipPercentage}
+        isCustom={isCustom}
       />
       <Results
         onClick={handleReset}

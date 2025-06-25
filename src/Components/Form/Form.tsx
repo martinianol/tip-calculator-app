@@ -4,11 +4,11 @@ import iconDollar from "../../../images/icon-dollar.svg";
 import { type FormEventHandler } from "react";
 import TipButtonsInput from "./TipButtonsInput/TipButtonsInput";
 interface FormProps {
-  onChange: (keyValue: string, value: string | number) => void;
+  onChange: (keyValue: string, value: string | number | boolean) => void;
   totalValue: number | null;
   numberOfPeople: number | null;
-  discretTipPercentage: number;
-  customTipPercentage: number | null;
+  tipPercentage: number;
+  isCustom: boolean;
 }
 
 const PersonIcon = (
@@ -22,8 +22,8 @@ const Form = ({
   onChange,
   totalValue,
   numberOfPeople,
-  discretTipPercentage,
-  customTipPercentage,
+  tipPercentage,
+  isCustom,
 }: FormProps) => {
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) =>
     e.preventDefault();
@@ -41,8 +41,8 @@ const Form = ({
         icon={DollarIcon}
       />
       <TipButtonsInput
-        discretTipPercentage={discretTipPercentage}
-        customTipPercentage={customTipPercentage}
+        tipPercentage={tipPercentage}
+        isCustom={isCustom}
         onSelectTip={onChange}
       />
       <Input
