@@ -16,7 +16,8 @@ const CustomTipButton = ({ val, onChange, isActive }: CustomTipButton) => {
     clsx(baseStyles, isActive && activeStyles, focusStyles)
   )}`;
 
-  const displayValue = val === null ? "" : val;
+  const displayValue = val === 0 ? "0" : val ? String(val) : "";
+
   const rightLocationForPercentage =
     typeof val === "number"
       ? val === 100
@@ -26,6 +27,13 @@ const CustomTipButton = ({ val, onChange, isActive }: CustomTipButton) => {
         : "35px"
       : "unset";
 
+  const handleClampValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const rawValue = e.target.value;
+    const cleanedValue = rawValue.replace(/^0+(?=\d)/, "");
+    const numberValue = Math.min(Number(cleanedValue), 100);
+    onChange(numberValue);
+  };
+
   return (
     <div className="relative">
       <input
@@ -33,7 +41,7 @@ const CustomTipButton = ({ val, onChange, isActive }: CustomTipButton) => {
         className={inputStyles}
         type="number"
         value={displayValue}
-        onChange={(e) => onChange(Number(e.target.value))}
+        onChange={handleClampValue}
         placeholder="Custom"
         min={0}
         max={100}
