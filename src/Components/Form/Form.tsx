@@ -1,6 +1,6 @@
 import Input from "./Inputs/Input";
-import iconPerson from "../../../images/icon-person.svg";
-import iconDollar from "../../../images/icon-dollar.svg";
+import iconPerson from "/images/icon-person.svg";
+import iconDollar from "/images/icon-dollar.svg";
 import { type FormEventHandler } from "react";
 import TipButtonsInput from "./TipButtonsInput/TipButtonsInput";
 interface FormProps {
