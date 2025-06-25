@@ -34,6 +34,12 @@ const CustomTipButton = ({ val, onChange, isActive }: CustomTipButton) => {
     onChange(numberValue);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "-" || e.key === "e" || e.key === "+") {
+      e.preventDefault(); // Block minus and scientific notation
+    }
+  };
+
   return (
     <div className="relative">
       <input
@@ -43,6 +49,7 @@ const CustomTipButton = ({ val, onChange, isActive }: CustomTipButton) => {
         value={displayValue}
         onChange={handleClampValue}
         placeholder="Custom"
+        onKeyDown={handleKeyDown}
         min={0}
         max={100}
         step={1}
