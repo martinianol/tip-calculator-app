@@ -3,7 +3,7 @@ import { activeStyles } from "./TipButton";
 import { twMerge } from "tailwind-merge";
 
 interface CustomTipButton {
-  val: number | null;
+  val: number;
   onChange: (val: number) => void;
   isActive: boolean;
 }
@@ -16,16 +16,11 @@ const CustomTipButton = ({ val, onChange, isActive }: CustomTipButton) => {
     clsx(baseStyles, isActive && activeStyles, focusStyles)
   )}`;
 
-  const displayValue = val === 0 ? "0" : val ? String(val) : "";
+  const displayValue =
+    isActive && (val === 0 || Boolean(val)) ? String(val) : "";
 
   const rightLocationForPercentage =
-    typeof val === "number"
-      ? val === 100
-        ? "19px"
-        : val >= 10
-        ? "27px"
-        : "35px"
-      : "unset";
+    val === 100 ? "19px" : val >= 10 ? "27px" : "35px";
 
   const handleClampValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     const rawValue = e.target.value;
@@ -39,6 +34,13 @@ const CustomTipButton = ({ val, onChange, isActive }: CustomTipButton) => {
       e.preventDefault(); // Block minus and scientific notation
     }
   };
+
+  const rightClasses =
+  val === 100
+    ? "right-[24px] md:right-[34px] lg:right-[19px]"
+    : val >= 10
+    ? "right-[45px] md:right-[40px] lg:right-[27px]"
+    : "right-[52px] md:right-[46px] lg:right-[35px]";
 
   return (
     <div className="relative">
@@ -56,7 +58,7 @@ const CustomTipButton = ({ val, onChange, isActive }: CustomTipButton) => {
       />
       {isActive && (
         <span
-          className={`absolute inset-y-0 flex items-center pointer-events-none text-green-900 text-preset3`}
+          className={`absolute inset-y-0 flex items-center pointer-events-none text-green-900 text-preset3 ${rightClasses}`}
           style={{ right: rightLocationForPercentage }}
         >
           %

@@ -32,7 +32,7 @@ const TipButtonsInput = ({
           />
         ))}
         <CustomTipButton
-          val={isCustom ? tipPercentage : null}
+          val={tipPercentage}
           onChange={(value) => handleSelectTip(value, true)}
           isActive={isCustom}
         />
