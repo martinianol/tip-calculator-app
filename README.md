@@ -6,7 +6,7 @@ This is a solution to the [Tip calculator app challenge on Frontend Mentor](http
 
 - [Overview](#overview)
   - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
+  - [Screenshots](#screenshots)
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
@@ -23,7 +23,7 @@ Users should be able to:
 - Calculate the correct tip and total cost of the bill per person
 - Check the custom tip %
 
-### Screenshot
+### Screenshots
 
 ![](./screenshots/Desktop.png)
 ![](./screenshots/Tablet.png)
@@ -38,14 +38,10 @@ Users should be able to:
 
 ### Built with
 
-- Semantic HTML5 markup
-- CSS custom properties
-- Flexbox
-- CSS Grid
+- React / Vite
+- TS
 - Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
+- [Tailwind CSS](https://tailwindcss.com/) - For styles
 
 ## Author
 
