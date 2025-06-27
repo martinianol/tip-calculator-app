@@ -2,7 +2,7 @@ interface InputProps {
   label: string;
   id: string;
   value: number | null;
-  onChange: (key: string, e: string) => void;
+  onChange: (key: string, e: number) => void;
   icon?: React.ReactNode;
   isError?: boolean;
   errorMessage?: string;
@@ -40,7 +40,7 @@ const Input = ({
           placeholder="0"
           className="cursor-pointer bg-transparent text-preset3 text-right outline-none min-w-0 w-full caret-green-400 text-green-900 placeholder-grey-300"
           value={value ?? ""}
-          onChange={(e) => onChange(id, e.target.value)}
+          onChange={(e) => onChange(id, Number(e.target.value))}
           min={0}
         />
       </div>
